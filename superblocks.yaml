@@ -4,17 +4,101 @@
 
 version: 1
 jobs:
-  compile:
-    image: node
+  lint:
+    image: node:10
     script:
       - echo Hello world!
-  test:
-    image: node
+  test_agent:
+    image: node:10
     script:
-      - echo Multiple Jobs can be defined the same way as single jobs
-      - echo http://superblocks.com/docs/configuration/configuration-introduction/#section=configuration
+      - npm run lint
+  test_finance:
+    image: node:10
+    script:
+      npm run test:agent
+  test_payroll_except_payday:
+    image: node:10
+    script:
+      - npm run test:payroll:except:payday
+  test_survey:
+    image: node:10
+    script:
+      - npm run test:survey
+  test_token_manager:
+    image: node:10
+    script:
+      - npm run test:token-manager
+  test_token_manager_frontend:
+    image: node:10
+    script:
+      - export INSTALL_FRONTEND=true
+      - npm run test:token-manager:app
+  test_vault:
+    image: node:10
+    script:
+      - npm run test:vault
+  test_voting:
+    image: node:10
+    script:
+      - npm run test:voting
+  test_shared:
+    image: node:10
+    script:
+      - npm run test:shared
+  coverage_agent:
+    image: node:10
+    script:
+      - npm run coverage:agent
+  coverage_finance:
+    image: node:10
+    script:
+      - npm run coverage:finance
+  coverage_payroll:
+    image: node:10
+    script:
+      - npm run coverage:payroll
+  coverage_survey:
+    image: node:10
+    script:
+      - npm run coverage:survey
+  coverage_token_manager:
+    image: node:10
+    script:
+      - npm run coverage:token-manager
+  coverage_vault:
+    image: node:10
+    script:
+      - npm run coverage:vault
+  coverage_voting:
+    image: node:10
+    script:
+      - npm run coverage:voting
+  integration_payroll_payday:
+    image: node:10
+    script:
+      - npm run test:payroll:only:payday
 stages:
-  - custom_sequence:
+  - tests:
       jobs:
-        - compile
-        - test
+        - lint
+        - test_agent
+        - test_finance
+        - test_payroll_except_payday
+        - test_survey
+        - test_token_manager
+        - test_token_manager_frontend
+        - test_vault
+        - test_voting
+        - test_shared
+  - coverage:
+      jobs:
+        - coverage_agent
+        - coverage_finance
+        - coverage_payroll
+        - coverage_survey
+        - coverage_token_manager
+        - coverage_vault
+        - coverage_voting
+  - integration:
+      jobs:
+        - integration_payroll_payday
