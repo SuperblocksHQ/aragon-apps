@@ -19,7 +19,7 @@
     "lerna": "^3.14.1"
   },
   "scripts": {
-    "install": "node scripts/install",
+    "postinstall": "node scripts/install",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@aragon/os --nohoist=@aragon/apps-* --nohoist=@aragon/ppf-contracts",
     "bootstrap:ci": "npm run bootstrap -- --no-ci",
     "clean": "git clean -fdxi apps future-apps shared",
