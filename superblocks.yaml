@@ -8,93 +8,93 @@ jobs:
     image: node:10
     script:
       - node -v
-      - npm install
+      - npm run install
       - npm run lint
   test_agent:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:agent
   test_finance:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:finance
   test_payroll_except_payday:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:payroll:except:payday
   test_survey:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:survey
   test_token_manager:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:token-manager
   test_token_manager_frontend:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - export INSTALL_FRONTEND=true
       - npm run test:token-manager:app
   test_vault:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:vault
   test_voting:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:voting
   test_shared:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:shared
   coverage_agent:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:agent
   coverage_finance:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:finance
   coverage_payroll:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:payroll
   coverage_survey:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:survey
   coverage_token_manager:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:token-manager
   coverage_vault:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:vault
   coverage_voting:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run coverage:voting
   integration_payroll_payday:
     image: node:10
     script:
-      - npm install
+      - npm run install
       - npm run test:payroll:only:payday
 stages:
   - tests:
