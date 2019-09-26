@@ -7,15 +7,15 @@ jobs:
   lint:
     image: node:10
     script:
-      - echo Hello world!
+      - npm run lint
   test_agent:
     image: node:10
     script:
-      - npm run lint
+      - npm run test:agent
   test_finance:
     image: node:10
     script:
-      - npm run test:agent
+      - npm run test:finance
   test_payroll_except_payday:
     image: node:10
     script:
